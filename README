@@ -1,0 +1,10 @@
+On VS Code enter: Ctrl + Shift + P, then run :Rebuild and Restart in Container
+In a new terminal, run pipenv shell to open the command line for the app
+To start the app run : uvicorn main:app --reload
+To execute HTTP requests, either open a new terminal and craft the request there, or use Burp Suite
+For HTTP Requests, you can use netcat following the format:
+echo -e "__msg__" | nc localhost 8000
+or you can use curl following the format:
+curl -i -X {POST/GET} -d "{data}" -H {header} link 
+eg. curl -i -X POST -H "Content-Type:application/json" -H "Content-Length:130" -d '{ "id": 3, "name": "Charlie", "age": 23, "course": "Artificial Intelligence" }' http://localhost:8000/malicious
+- this is a valid command, that should show "message": "Malicious action executed." on the page when reloaded or in terminal depending on whether you use burp suite / terminal respectively

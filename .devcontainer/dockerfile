@@ -1,0 +1,26 @@
+# Dockerfile for FastAPI application
+FROM mcr.microsoft.com/devcontainers/python:3.10-bullseye
+
+
+# Set the working directory
+WORKDIR /CCSEP_Assignment_Demo
+
+# Copy requirements.txt and install dependencies
+# Upgrade pip and install pipenv for managing dependencies
+RUN python3 -m pip install --upgrade pip
+RUN pip install pipenv
+
+RUN apt-get update
+RUN apt-get install -y nginx
+RUN apt-get install netcat-openbsd
+
+# RUN pipenv install --deploy --ignore-pipfile
+
+# Run pipenv install to set up dependencies
+RUN pipenv install
+
+# Expose the port the app runs on
+EXPOSE 8000
+
+RUN service nginx start
+
